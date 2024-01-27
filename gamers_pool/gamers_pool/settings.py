@@ -55,7 +55,7 @@ SERVER_EMAIL = DEFAULT_FROM_EMAIL
 # Application definition
 
 INSTALLED_APPS = [
-    # 'modeltranslation',
+     'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

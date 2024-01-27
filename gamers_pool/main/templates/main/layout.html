@@ -27,14 +27,14 @@
         <a href="{% url 'home' %}">
             <li><i class="fa-solid fa-house"></i> Главная</li>
         </a>
-        <a href="{% url 'about' %}">
-            <li><i class="fa-solid fa-address-card"></i> Про нас</li>
-        </a>
 
-        <a href="{% url 'about' %}">
-            <li><i class="fa-regular fa-newspaper"></i> Публикации</li>
+        <a href="{% url 'create' %}">
+            <li><i class="fa-regular fa-newspaper"></i> Разместить пост </li>
         </a>
         <br>
+        <a href="{% url 'about' %}">
+            <li><i class="fa-solid fa-address-card"></i> Немного о нас</li>
+        </a>
 
         <br><br><br><br><br>
 
@@ -59,11 +59,12 @@
     </html>
 
 </aside>
-<main align = 'center'>
+<main align='center'>
 
-        <img src="{% static 'main/img/dragon.gif' %}" alt="logo" , width="200" height="100">
+    <img src="{% static 'main/img/dragon.gif' %}" alt="logo" , width="200" height="100">
     <br>
     {% block content %}
+
 
     {% endblock %}
 </main>

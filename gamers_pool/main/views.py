@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import PostForm
 
 
 def MainView(request):
@@ -18,3 +19,12 @@ def AboutView(request):
     }
     return render(request, 'main/home.html', data)
     # return render(request, 'main/about.html')
+
+
+def CreateView(request):
+    form = PostForm()
+    data= {
+        'form': form,
+
+    }
+    return render(request, "main/create.html", data)
