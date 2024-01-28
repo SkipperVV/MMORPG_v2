@@ -1,5 +1,11 @@
 from django.shortcuts import render
+import datetime
 from .forms import PostForm
+from .models import Post
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView, View
 
 
 def MainView(request):
@@ -21,10 +27,26 @@ def AboutView(request):
     # return render(request, 'main/about.html')
 
 
-def CreateView(request):
-    form = PostForm()
-    data= {
-        'form': form,
+class PostCreateView(PermissionRequiredMixin, CreateView):
+    form_class = PostForm
+    model = Post
+    template_name = 'create.html'
+    permission_required = ('Models.add_post',
+                           'Models.change_post')
+    context_object_name = 'posts_today'
 
-    }
-    return render(request, "main/create.html", data)
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        form.instance.author = self.request.user.author
+        today = datetime.date.today()
+        post.save()
+        #Реализовать рассылку уведомлений подписчикам после создания новости
+        info_after_new_post.delay(form.instance.pk)
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        #context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
+        context['time_now'] = datetime.datetime.utcnow()
+        # context['how_many'] = Post.objects.filter()
+        return context

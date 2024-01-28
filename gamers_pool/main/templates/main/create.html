@@ -1,20 +1,16 @@
 {% extends 'main/layout.html' %}
-{% block title  %}
-Add a Post
-{% endblock %}
+{% load i18n %}
+
+{% block title %} Create a new post {% endblock title %}
 
 {% block content %}
-<div class="features">
-    <h1>Добавление объявления</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-<!--        <input type="text" placeholder= {{ user }} class="form-control"><br>-->
-<!--        <input type="text" placeholder="Введите заголовок" class="form-control"><br>-->
-<!--        <textarea class="form-control" placeholder="А сюда - содержание"></textarea><br>-->
-<!--        <button class="btn btn-success" type="submit">Добавить статью</button>-->
-        <br><br>
-    </form>
-</div>
+<h3>{{ string }} {% trans "Добавить пост от автора" %} "{{ user }}"</h3>
+<form method="POST">
+    {% csrf_token %}
 
-{% endblock %}
+    {{ form.as_p }}
+    <input type="submit" value="Add/edit post">
+</form>
+<br>
+<h3> <a href="/news">{{ string }} {% trans "На главную" %} &#128073;</a> </h3>
+{% endblock content %}
