@@ -30,18 +30,20 @@ def AboutView(request):
 class PostCreateView(PermissionRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
-    template_name = 'create.html'
+    template_name = 'main/create.html'
     permission_required = ('Models.add_post',
                            'Models.change_post')
     context_object_name = 'posts_today'
 
     def form_valid(self, form):
         post = form.save(commit=False)
-        form.instance.author = self.request.user.author
+        post.author = self.request.user
+        #author =self.request.user.username
+        # form.instance.author = self.request.user#.author
         today = datetime.date.today()
         post.save()
         #Реализовать рассылку уведомлений подписчикам после создания новости
-        info_after_new_post.delay(form.instance.pk)
+        #info_after_new_post.delay(form.instance.pk)
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):

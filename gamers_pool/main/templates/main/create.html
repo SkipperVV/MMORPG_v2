@@ -1,16 +1,16 @@
-{% extends 'main/layout.html' %}
+{% extends 'main/layout.html' %}{% load static %}
 {% load i18n %}
 
 {% block title %} Create a new post {% endblock title %}
 
 {% block content %}
-<h3>{{ string }} {% trans "Добавить пост от автора" %} "{{ user }}"</h3>
-<form method="POST">
-    {% csrf_token %}
+<div class="features">
+    <h1> {% trans "Добавить пост от автора" %} "{{ user }}"</h1>
+    <form method="POST">
+        {% csrf_token %}
 
-    {{ form.as_p }}
-    <input type="submit" value="Add/edit post">
-</form>
-<br>
-<h3> <a href="/news">{{ string }} {% trans "На главную" %} &#128073;</a> </h3>
+        {{ form.as_p }}
+        <input type="submit" value="Add/edit post">
+    </form>
+</div>
 {% endblock content %}

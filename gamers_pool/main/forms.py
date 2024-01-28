@@ -1,23 +1,10 @@
-from django.forms import ModelForm, TextInput
+from django.forms import ModelForm, BooleanField  # true-false поле
+from .models import Post
 
-from .models import *
 
 class PostForm(ModelForm):
+    check_box = BooleanField(label='Сохранить')
     class Meta:
         model = Post
-        author = 'author'#how to get a user?
-        fields = [author, 'title', 'text', ]
-        widgets = {
-            'title': TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': "Введите заголовок",
-
-            }),
-            'text': TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': "А сюда - содержание",
-
-            })
-
-
-        }
+        fields = ['title', 'text', 'category', 'check_box']
+        exclude = ["post_time", "author"]
