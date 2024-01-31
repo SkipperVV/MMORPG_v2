@@ -53,6 +53,7 @@ main .features {
 
 main .features h1 {font-size: 35px; margin: 20px;}
 main .features p {max-wight: 600px; margin: 20px auto;}
+h1 {color: #B2BEB5; font-size: 35px; margin: 20px;}
 
 .text {
     color: #B2BEB5;
@@ -85,3 +86,13 @@ form {
     wight: 500px;
     margin-top: 50px;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    margin-left: 20px;
+    color: #b4b4b4;
+    background-color: #LightGray;
+    #padding: 20px
+    }

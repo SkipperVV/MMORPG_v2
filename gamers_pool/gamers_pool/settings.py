@@ -141,6 +141,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
 LANGUAGE_CODE = 'ru'
+LANGUAGES = [
+    ('ru','Русский'),
+    ('en-us', 'English')
+    ]
 
 TIME_ZONE = 'UTC'
 
@@ -152,6 +156,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
+SITE_URL = "http://127.0.0.1:8000"
 STATICFILES_DIRS = [BASE_DIR / "main/static", ]
 
 # Default primary key field type
