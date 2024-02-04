@@ -21,7 +21,8 @@ SECRET_KEY = 'django-insecure-=5bso*air5)$)%$$g-g*5=z8l*bd=aflu(cc%(ox9vsyji+j&#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -46,7 +47,7 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # все ув�
 SITE_ID = 1
 ACCOUNT_FORMS = {"signup": "sign.models.BasicSignupForm"}
 
-ADMINS = {'admin', 'skippervasin@gmail.com'}
+ADMINS = {'admin',}
 
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
@@ -55,7 +56,7 @@ SERVER_EMAIL = DEFAULT_FROM_EMAIL
 # Application definition
 
 INSTALLED_APPS = [
-     'modeltranslation',
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -72,6 +73,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.google',
+    "django_apscheduler",     # отправлять периодические письма
 ]
 
 MIDDLEWARE = [

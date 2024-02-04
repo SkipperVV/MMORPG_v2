@@ -1,9 +1,10 @@
 {% extends 'main/layout.html' %}
 {% load i18n %}
 {% load static  %}
+{% block title %} Posts {% endblock  %}
+
 <b style="color:#ff0099; font-size:30px"> Page "Posts"</b>
 
-{% block title %} Posts {% endblock  %}
 {% block text %} {{text}} {% endblock  %}
 
 {% block content %}
@@ -35,16 +36,11 @@
         {% for item in posts %}
             <tr>
                 <td width="100">{{ item.author }}</td>
-                <td width="200">{{ item.title }}</td>
-               {# <td width="200"><a href="{% url '/' item.id %}">{{ item.title }}</a></td>#}
+               {# <td width="200">{{ item.title }}</td>#}
+               <td width="200"><a href="{% url 'post' item.id %}">{{ item.title }}</a></td>
                 <td width="400">{{item.text}}</td>
                 <td width="200">{{item.post_time}}</td>
                 <td width="200">{{item.category}}</td>
-                <td>
-                    {% for cat in item.category.all %}
-                    <a href="{% url 'categories_list' cat.id %}"> {{cat}}</a>
-                    {% endfor %}
-                </td>
                 <td width="100"><a href="{% url 'update' item.id %}"><u>&#128260;</u></a></td>
                 <td width="100"><a href="{% url 'delete' item.id %}"><u> &#128683; </u></a></td>
             </tr>

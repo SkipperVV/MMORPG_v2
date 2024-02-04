@@ -16,11 +16,13 @@ aside img {
     wight: 80px;
     float: left;
     margin-bottom: 25px;
+    display: block;
 }
 img {
     wight: 80px;
     float: left;
     margin-bottom: 25px;
+    display: block;
 }
 
 aside img:hover{transform: scale(1.05);}
@@ -79,13 +81,13 @@ main .alert-warning{
     width: 400px;
     margin: 20px 34%;
     text-align: left;
-}
+    }
 
 form {
     margin: left;
     wight: 500px;
     margin-top: 50px;
-}
+    }
 
 table {
     width: 100%;
@@ -94,5 +96,16 @@ table {
     margin-left: 20px;
     color: #b4b4b4;
     background-color: #LightGray;
-    #padding: 20px
+    }
+
+table th {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    }
+
+table td {
+    border: 1px solid #ddd;
+    padding: 18px;
+    text-align: center;
     }

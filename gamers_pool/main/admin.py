@@ -4,16 +4,17 @@ from .models import Post, Comment
 admin.site.register(Comment)
 
 
-class PostAdmin(TranslationAdmin):
-    model = Post
+# class PostAdmin(TranslationAdmin):
+#     model = Post
 
 
 class CommentAdmin(TranslationAdmin):
     model = Comment
+    
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     model = Post
-    list_display = ('author', 'title', 'post_time')
+    list_display = ('pk','author', 'title', 'post_time')
     list_filter = ('author', 'post_time')
 
     # exclude = ('author',) # скрыть author поле, чтобы оно не отображалось в форме изменений

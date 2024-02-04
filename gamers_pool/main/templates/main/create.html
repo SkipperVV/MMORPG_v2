@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="features">
-    <h1> {% trans text %} "{{ user }}"</h1>
+    <h1> {{string}} {% trans "Новый пост от " %}  "{{ user }}"</h1>
     <form method="POST">
         {% csrf_token %}
 

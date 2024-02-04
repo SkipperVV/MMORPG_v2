@@ -8,6 +8,7 @@ from django.views.generic import CreateView, DeleteView, UpdateView, ListView
 from .forms import PostForm
 from .models import Post
 from .tasks import info_after_new_post  # Рассылки новостей
+from django.utils.translation import gettext as _
 
 
 # def MainView(request):
@@ -22,7 +23,7 @@ class MainView(ListView):
     ordering = '-post_time'
     template_name = 'main/posts.html'
     context_object_name = 'posts'
-    paginate_by = 20
+    paginate_by = 7
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -35,22 +36,26 @@ class MainView(ListView):
 class PostView(ListView):
     model = Post
     template_name = 'main/post.html'
-    context_object_name = 'posts'
-    ordering = '-post_time'
+    context_object_name = 'post'
+    #ordering = '-post_time'
 
-    def get_context_data(self, **kwargs):
+
+    def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
+        _id = self.kwargs.get('pk')
         context['time_now'] = datetime.datetime.utcnow()
+        context['post'] = Post.objects.get(id=_id)
+        # context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         return context
+
 
 
 
 class PostCreateView(PermissionRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
-    permission_required = ('Models.add_post',
-                           'Models.change_post')
+    permission_required = ('main.add_post',
+                           'main.change_post')
     context_object_name = 'posts_today'
     template_name = 'main/create.html'
     success_url = '/' # Переделать на стр поста
@@ -73,9 +78,11 @@ class PostCreateView(PermissionRequiredMixin, CreateView):
 
 
 class PostUpdateView(PermissionRequiredMixin, UpdateView):
-    permission_required = ('Models.change_post')
+    permission_required = ('main.change_post')
     form_class = PostForm
     template_name = 'main/create.html'
+    success_url = '/'
+    
     #
     # data = {
     #     'title': 'Измените содержание статьи',
@@ -90,7 +97,7 @@ class PostUpdateView(PermissionRequiredMixin, UpdateView):
 
 
 class PostDeleteView(PermissionRequiredMixin, DeleteView):
-    permission_required = ('Models.delete_post')
+    permission_required = ('main.delete_post')
     template_name = 'main/delete.html'
     queryset = Post.objects.all()
     success_url = '/'
@@ -98,12 +105,7 @@ class PostDeleteView(PermissionRequiredMixin, DeleteView):
 def AboutView(request):
     data = {
         'page': 'О нас',
-        'title': 'Мы очень крутые. Мы самые лучшие!!!! 🤟',
-        'text': 'Рассказ о нас, любимых. Рассказ о нас, любимых. Рассказ о нас, любимых. Рассказ о нас, любимых. '
-                'Рассказ о нас, любимых. Рассказ о нас, любимых. Рассказ о нас, любимых. Рассказ о нас, любимых.'
-                'Рассказ о нас, родных и очень любимых. Рассказ о нас, родных и очень любимых. '
-                'Рассказ о нас, родных и очень любимых. Рассказ о нас, родных и очень любимых. '
-                'Рассказ о нас, родных и очень любимых. Рассказ о нас, родных и очень любимых. '
-                'Рассказ о нас, родных и очень любимых. Рассказ о нас, родных и очень любимых. \n 😉',
+        'title': _('Мы очень крутые. Мы самые лучшие!!!!'),
+        'text': (_('Рассказ о нас, любимых. '))*50,
     }
     return render(request, 'main/about.html', data)

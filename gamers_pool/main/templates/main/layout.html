@@ -1,5 +1,5 @@
-{% load static %}
 {% load i18n %}
+{% load static %}
 
 <html lang="ru">
 <head>
@@ -40,37 +40,37 @@
 
     <html lang="en" xmlns="http://www.w3.org/1999/html">
     <span class="logo"></span>
-    <h3>Навигация</h3>
+    <h3>{{ string }} {% trans 'Навигация' %}</h3>
     <ul>
         <a href="{% url 'home' %}">
-            <li><i class="fa-solid fa-house"></i> Главная</li>
+            <li><i class="fa-solid fa-house"></i> {{ string }} {% trans 'Главная' %}</li>
         </a>
 
         <a href="{% url 'create' %}">
-            <li><i class="fa-regular fa-newspaper"></i> Разместить пост</li>
+            <li><i class="fa-regular fa-newspaper"></i> {{ string }} {% trans 'Разместить пост' %}</li>
         </a>
         <br>
         <a href="{% url 'about' %}">
-            <li><i class="fa-solid fa-address-card"></i> Немного о нас</li>
+            <li><i class="fa-solid fa-address-card"></i> {{ string }} {%trans 'Немного о нас'%}</li>
         </a>
 
         <br><br><br><br><br>
 
         {% if not user.is_authenticated %}
         <br>
-        <p>Для полноценного присутствия требуется авторизация или регистрация</p>
+        <p>{%trans 'Для полноценного присутствия требуется авторизация или регистрация'%}</p>
         <a href="{% url 'account_login' %}">
-            <li><i class="fa-solid fa-right-to-bracket"></i> Вход</li>
+            <li><i class="fa-solid fa-right-to-bracket"></i> {{ string }} {%trans 'Вход'%}</li>
         </a>
         <a href="{% url 'account_signup' %}">
-            <li><i class="fa-solid fa-right-to-bracket"></i> Регистрация</li>
+            <li><i class="fa-solid fa-right-to-bracket"></i> {{ string }} {%trans 'Регистрация'%}</li>
         </a>
         {% else %}
         <br>
-        <p>Вы авторизированы как </p>
+        <p>{{ string }} {% trans "Вы авторизированы как" %}</p>
         <p>"{{ user }}"</p>
         <a href="{% url 'logout_confirmed' %}">
-            <li><i class="fa-solid fa-right-from-bracket"></i> Выход</li>
+            <li><i class="fa-solid fa-right-from-bracket"></i>{{ string }} {%trans 'Выход'%}</li>
         </a>
         {% endif %}
     </ul>
