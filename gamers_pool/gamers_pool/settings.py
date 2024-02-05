@@ -23,6 +23,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
+
+CELERY_BROKER_URL = "redis://localhost:6379"  #'redis-10049.c100.us-east-1-4.ec2.cloud.redislabs.com:10049'#
+CELERY_RESULT_BACKEND = "redis://localhost:6379"  #'redis-10049.c100.us-east-1-4.ec2.cloud.redislabs.com:10049'#
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-04 18:58+0100\n"
+"POT-Creation-Date: 2024-02-05 18:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -169,13 +169,13 @@ msgstr "You can leave comments on the post by clicking on it "
 msgid "Сегодня без новостей"
 msgstr "No news today"
 
-#: .\main\views.py:108
+#: .\main\views.py:118
+msgid "О нас"
+msgstr "About us"
+
+#: .\main\views.py:119
 msgid "Мы очень крутые. Мы самые лучшие!!!!"
 msgstr "We're very cool. We are the best!!!! "
-
-#: .\main\views.py:109
-msgid "Рассказ о нас, любимых. "
-msgstr "A story about us, loved ones."
 
 #: .\protect\templates\protect\index.html:6
 msgid "Вы вошли, как пользователь: "
@@ -196,3 +196,6 @@ msgstr "Do you really want to leave?"
 #: .\sign\templates\sign\logout_confirmed.html:7
 msgid "Подтвердить"
 msgstr "Confirm"
+
+#~ msgid "Рассказ о нас, любимых. "
+#~ msgstr "A story about us, loved ones."

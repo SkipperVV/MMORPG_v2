@@ -1,4 +1,5 @@
 import datetime
+import os
 
 from allauth.core.internal.http import redirect
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -9,7 +10,7 @@ from .forms import PostForm
 from .models import Post
 from .tasks import info_after_new_post  # Рассылки новостей
 from django.utils.translation import gettext as _
-
+from django.utils.translation import get_language as lg
 
 # def MainView(request):
 #     data = {
@@ -103,9 +104,19 @@ class PostDeleteView(PermissionRequiredMixin, DeleteView):
     success_url = '/'
 
 def AboutView(request):
+    module_dir = os.path.dirname(__file__)
+    cur_lang= lg()
+    if cur_lang == "ru":
+        file_path = os.path.join(module_dir, 'static/main/txt/about_ru.txt')
+    else:
+        file_path = os.path.join(module_dir, 'static/main/txt/about_en.txt')
+    my_file=open(file_path, 'r+',encoding= "UTF-8")
+    txt=my_file.read() 
+    my_file.close()
+    
     data = {
-        'page': 'О нас',
+        'page': _('О нас'),
         'title': _('Мы очень крутые. Мы самые лучшие!!!!'),
-        'text': (_('Рассказ о нас, любимых. '))*50,
+        'text': txt,
     }
     return render(request, 'main/about.html', data)
