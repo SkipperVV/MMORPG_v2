@@ -105,11 +105,7 @@ class PostDeleteView(PermissionRequiredMixin, DeleteView):
 
 def AboutView(request):
     module_dir = os.path.dirname(__file__)
-    cur_lang= lg()
-    if cur_lang == "ru":
-        file_path = os.path.join(module_dir, 'static/main/txt/about_ru.txt')
-    else:
-        file_path = os.path.join(module_dir, 'static/main/txt/about_en.txt')
+    file_path = os.path.join(module_dir, 'static/main/txt/', Language(lg()))
     my_file=open(file_path, 'r+',encoding= "UTF-8")
     txt=my_file.read() 
     my_file.close()
@@ -120,3 +116,10 @@ def AboutView(request):
         'text': txt,
     }
     return render(request, 'main/about.html', data)
+
+def Language(cur_language):
+    if cur_language=='ru':
+        my_file ='about_ru.txt'
+    else:
+        my_file='about_en.txt'
+    return my_file

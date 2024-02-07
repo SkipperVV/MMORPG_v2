@@ -73,7 +73,7 @@ worker — это часть системы, которая отправляет
 (venv) PS C:\MMORPG_v2\gamers_pool\> python manage.py runserver
 
 2. Запустить Redis
-D:\Programming\SkillFactory. Номер группы- PDEV-36\Distrib\Redis\redis-server.exe
+C:\Program Files\Redis\redis-server.exe
 
 3. Запустить Celery:
 C:\MMORPG_v2\gamers_pool\
