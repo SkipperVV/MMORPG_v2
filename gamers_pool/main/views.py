@@ -1,16 +1,15 @@
 import datetime
 import os
 
-from allauth.core.internal.http import redirect
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render
+from django.utils.translation import get_language as lg
+from django.utils.translation import gettext as _
 from django.views.generic import CreateView, DeleteView, UpdateView, ListView
 
 from .forms import PostForm
 from .models import Post
-from .tasks import info_after_new_post  # Рассылки новостей
-from django.utils.translation import gettext as _
-from django.utils.translation import get_language as lg
+
 
 # def MainView(request):
 #     data = {
@@ -34,12 +33,14 @@ class MainView(ListView):
     # def post(self, request):
     #     request.session['django_timezone'] = request.POST['timezone']
     #     return redirect('/news')
+
+
 class PostView(ListView):
     model = Post
     template_name = 'main/post.html'
     context_object_name = 'post'
-    #ordering = '-post_time'
 
+    # ordering = '-post_time'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -50,8 +51,6 @@ class PostView(ListView):
         return context
 
 
-
-
 class PostCreateView(PermissionRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
@@ -59,7 +58,7 @@ class PostCreateView(PermissionRequiredMixin, CreateView):
                            'main.change_post')
     context_object_name = 'posts_today'
     template_name = 'main/create.html'
-    success_url = '/' # Переделать на стр поста
+    success_url = '/' #f'/post<int:{_id}>'# Переделать на стр поста
 
     def form_valid(self, form):
         post = form.save(commit=False)
@@ -67,13 +66,13 @@ class PostCreateView(PermissionRequiredMixin, CreateView):
         post.post_time = datetime.date.today()
         post.save()
         # Реализовать рассылку уведомлений подписчикам после создания новости
-        info_after_new_post.delay(form.instance.pk)
+        # info_after_new_post.delay(form.instance.pk)
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         context['time_now'] = datetime.datetime.utcnow()
+
         # context['how_many'] = Post.objects.filter()
         return context
 
@@ -83,7 +82,7 @@ class PostUpdateView(PermissionRequiredMixin, UpdateView):
     form_class = PostForm
     template_name = 'main/create.html'
     success_url = '/'
-    
+
     #
     # data = {
     #     'title': 'Измените содержание статьи',
@@ -103,13 +102,14 @@ class PostDeleteView(PermissionRequiredMixin, DeleteView):
     queryset = Post.objects.all()
     success_url = '/'
 
+
 def AboutView(request):
     module_dir = os.path.dirname(__file__)
     file_path = os.path.join(module_dir, 'static/main/txt/', Language(lg()))
-    my_file=open(file_path, 'r+',encoding= "UTF-8")
-    txt=my_file.read() 
+    my_file = open(file_path, 'r+', encoding="UTF-8")
+    txt = my_file.read()
     my_file.close()
-    
+
     data = {
         'page': _('О нас'),
         'title': _('Мы очень крутые. Мы самые лучшие!!!!'),
@@ -117,9 +117,9 @@ def AboutView(request):
     }
     return render(request, 'main/about.html', data)
 
+
 def Language(cur_language):
-    if cur_language=='ru':
-        my_file ='about_ru.txt'
+    if cur_language == 'ru':
+        return 'about_ru.txt'
     else:
-        my_file='about_en.txt'
-    return my_file
+        return 'about_en.txt'

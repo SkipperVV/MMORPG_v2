@@ -1,7 +1,7 @@
-{% extends "sign/main.html" %}
+{% extends "main/layout.html" %}
 {% load i18n %}
 {% block content %}
-<h2> {{string}} {% trans "Вы действительно хотите выйти?" %} </h2>
+<h1> {{string}} {% trans "Вы действительно хотите выйти?" %} </h1>
 <form action="{% url 'logout' %}" method="post">
     {% csrf_token %}
     <input type="submit" value= {{string}} {% trans "Подтвердить"%}>

@@ -6,7 +6,11 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
-from django.conf.global_settings import DEFAULT_FROM_EMAIL
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
+
+# from django.conf.global_settings import DEFAULT_FROM_EMAIL # using .env instead of this
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,16 +20,15 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = os.getenv("SECRET_KEY")
 SECRET_KEY = 'django-insecure-=5bso*air5)$)%$$g-g*5=z8l*bd=aflu(cc%(ox9vsyji+j&#'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
-
-CELERY_BROKER_URL = "redis://localhost:6379"  #'redis-10049.c100.us-east-1-4.ec2.cloud.redislabs.com:10049'#
-CELERY_RESULT_BACKEND = "redis://localhost:6379"  #'redis-10049.c100.us-east-1-4.ec2.cloud.redislabs.com:10049'#
+CELERY_BROKER_URL = "redis://localhost:6379"  # 'redis-10049.c100.us-east-1-4.ec2.cloud.redislabs.com:10049'#
+CELERY_RESULT_BACKEND = "redis://localhost:6379"  # 'redis-10049.c100.us-east-1-4.ec2.cloud.redislabs.com:10049'#
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
@@ -45,25 +48,39 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none' # - без проверки
-#ACCOUNT_EMAIL_VERIFICATION = 'mandatory' #Приветственное письмо вновьзарегистрировавшемуся товарищу
-#Для установки этого значения "mandatory" требуется ACCOUNT_EMAIL_REQUIRED быть True.
+# ACCOUNT_EMAIL_VERIFICATION = 'none'  # - без проверки
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory' #Приветственное письмо вновьзарегистрировавшемуся товарищу
+# Для установки этого значения "mandatory" требуется ACCOUNT_EMAIL_REQUIRED быть True.
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # все уведомления будут приходить в консоль.
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'#Чтобы уведомления приходили на почту
 
 SITE_ID = 1
+
 ACCOUNT_FORMS = {"signup": "sign.models.BasicSignupForm"}
 
-ADMINS = {'admin',}
+# EMAIL_HOST = os.getenv("EMAIL_HOST")
+# EMAIL_PORT = os.getenv("EMAIL_PORT")
+# EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")  # mail.ru пароль для внешнего приложения
+# DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
+
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = 'vasinvladimir@inbox.ru'
+EMAIL_HOST_PASSWORD = '2548s3hVzkmenZfjnqnM'
+DEFAULT_FROM_EMAIL = 'vasinvladimir@inbox.ru'
+
+EMAIL_USE_SSL = False
+EMAIL_USE_TLS = True
+
+ADMINS = {'admin', 'skippervasin@gmail.com'}
 
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
-
-
 
 # Application definition
 
 INSTALLED_APPS = [
-    'modeltranslation',
+    'modeltranslation',  # транслятор д.б. перед админом
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -80,7 +97,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.google',
-    "django_apscheduler",     # отправлять периодические письма
+    "django_apscheduler",  # отправлять периодические письма
 ]
 
 MIDDLEWARE = [
@@ -96,8 +113,6 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
 ]
 
-
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -110,7 +125,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                'django.template.context_processors.request', # `allauth` needs this from django
+                'django.template.context_processors.request',  # `allauth` needs this from django
             ],
         },
     },
@@ -151,9 +166,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 LANGUAGES = [
-    ('ru','Русский'),
+    ('ru', 'Русский'),
     ('en-us', 'English')
-    ]
+]
 
 TIME_ZONE = 'UTC'
 

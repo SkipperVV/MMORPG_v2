@@ -1,6 +1,6 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
-from .models import Post, Comment
+from .models import Post, Comment, Author
 admin.site.register(Comment)
 
 
@@ -10,6 +10,11 @@ admin.site.register(Comment)
 
 class CommentAdmin(TranslationAdmin):
     model = Comment
+
+@admin.register(Author)
+class AuthorAdmin(admin.ModelAdmin):
+    model = Author
+    list_display = ('user', 'nickname',)
     
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
