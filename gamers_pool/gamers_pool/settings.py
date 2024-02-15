@@ -98,6 +98,8 @@ INSTALLED_APPS = [
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.google',
     "django_apscheduler",  # отправлять периодические письма
+
+    'sorl.thumbnail', # Работа с картинками
 ]
 
 MIDDLEWARE = [
@@ -181,7 +183,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 SITE_URL = "http://127.0.0.1:8000"
-STATICFILES_DIRS = [BASE_DIR / "main/static", ]
+STATICFILES_DIRS = [BASE_DIR, "main/static", ]
+MEDIA_ROOT = [STATICFILES_DIRS, '/main/img',]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

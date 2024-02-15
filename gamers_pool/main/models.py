@@ -25,9 +25,22 @@ class Post(models.Model):
     video = models.FileField(upload_to='videos/', blank=True, null=True)
     audio = models.FileField(upload_to='audio/', blank=True, null=True)
     category = models.CharField(_('Категория'), max_length=20, choices=CATEGORY, help_text=_('Введите категорию'))
+    # Поле для картинки (необязательное)
+    image = models.ImageField(
+        'Image',
+        upload_to='main/img',
+        blank=True,
+    )
+    # Аргумент upload_to указывает директорию,
+    # в которую будут загружаться пользовательские файлы.
+
+    class Meta:
+        ordering = ('-post_time',)
+        verbose_name = 'Post'
+        verbose_name_plural = 'Posts'
 
     def __str__(self):
-        return f"{self.title}"
+        return f"{self.title[:20]}"
 
     def get_absolute_url(self):
         return f'/news/{self.id}'

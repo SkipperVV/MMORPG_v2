@@ -1,4 +1,4 @@
-Задание:
+## Задание:
 Нам необходимо разработать интернет-ресурс для фанатского сервера одной известной
 MMORPG — что-то вроде доски объявлений. Пользователи нашего ресурса должны иметь возможность
 - зарегистрироваться в нём по e-mail,
@@ -28,29 +28,54 @@ MMORPG — что-то вроде доски объявлений. Пользо�
 Также мы бы хотели иметь возможность отправлять пользователям
 - новостные рассылки.
 --------------------------------------------------------------------------
-ICONS from
-https://fontawesome.com/search?q=logout&o=r
+[Создадим документацию проекта:](https://www.mkdocs.org/user-guide/configuration/)
 
-python manage.py makemigrations
-python manage.py migrate
+Create a new project 'mkdocs.docs':
+[Read docs >>>](https://www.mkdocs.org/user-guide/writing-your-docs/)
+
+Создадим новое приложение в папке проекта
+
+`mkdocs new docs`
+
+и перейдем в нее
+
+`cd docs`
+
+Build the documentation site:
+
+`mkdocs build`
+
+Start the live-reloading docs server:
+
+`mkdocs serve`
+
+---
+ICONS [from](https://fontawesome.com/search?q=logout&o=r)
+
+    python manage.py makemigrations
+    python manage.py migrate
 
 Переводы
 Поскольку у нас уже были записи в базе данных, надо будет ввести команду
-python manage.py update_translation_fields
-Везде вставить
-from django.utils.translation import gettext as _
 
-Для обновления переводов в django.po
-python manage.py makemessages -l en
-и скомпиллировать
-python manage.py compilemessages
+    python manage.py update_translation_fields
+Везде вставить
+
+    from django.utils.translation import gettext as _
+
+Для обновления переводов в 
+
+    django.popython manage.py makemessages -l en
+и скомпилировать
+
+    python manage.py compilemessages
 
 -------------------------------------------------------------
-{% load i18n %}
-<form action="{% url 'set_language' %}" method="POST"> {% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
-    <input type="hidden" name="next" value="{{ redirect_to }}"></form>
+    {% load i18n %}
+    <form action="{% url 'set_language' %}" method="POST"> {% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
+        <input type="hidden" name="next" value="{{ redirect_to }}"></form>
 
-    <select name="language" id="">
+        <select name="language" id="">
         {% get_available_languages as LANGUAGES %} <!-- получаем языки -->
         {% get_language_info_list for LANGUAGES as languages %} <!-- Помещаем их в список languages -->
 
@@ -62,19 +87,21 @@ python manage.py compilemessages
     </select>
     <input type="submit" value="set">
 -------------------------------------------------------------
-For Celery & Redis
+## For Celery & Redis
 
-worker — это часть системы, которая отправляет задачи из очереди на исполнение.
-
+* Worker — это часть системы, которая отправляет задачи из очереди на исполнение.
 Все задачи принято хранить в файлах с названием tasks.py. В таком случае Celery сможет самостоятельно 
 находить задачи. Любая задача представляет собой обычную функцию с одной особенностью: 
 она должна быть обернута в декоратор.
 
-----------------------------------------------------------
-Celery - разблокирует рабочий процесс для Django. Это означает, что вы можете разгрузить задачи из основного цикла
+----
+
+* Celery - разблокирует рабочий процесс для Django. Это означает, что вы можете разгрузить задачи из основного цикла
 запросов/ответов внутри Django.
 
-Redis — это хранилище данных и брокер сообщений между Celery и Django. Другими словами, Django и Celery используют
+--- 
+
+* Redis — это хранилище данных и брокер сообщений между Celery и Django. Другими словами, Django и Celery используют
 Redis для взаимодействия друг с другом (вместо базы данных SQL)
 
 Все трое работают вместе, создавая асинхронное волшебство. Вот несколько отличных вариантов использования Django + Celery:
@@ -89,20 +116,22 @@ Redis для взаимодействия друг с другом (вместо
 Запуск рабочих процессов и/или отправка уведомлений веб-перехватчика
 ----------------------------------------------------------
 
-1. Запустить сервер: 
-(venv) PS C:\MMORPG_v2\gamers_pool\> python manage.py runserver
+1. Запустить сервер:
+`(venv) PS C:\MMORPG_v2\gamers_pool\> python manage.py runserver`
 
 2. Запустить Redis
-C:\Program Files\Redis\redis-server.exe
+`C:\Program Files\Redis\redis-server.exe`
 
 3. Запустить Celery:
-C:\MMORPG_v2\gamers_pool\
-(venv) PS C:\MMORPG_v2\gamers_pool\> celery -A gamers_pool worker -l INFO --pool=solo
+`C:\MMORPG_v2\gamers_pool\
+(venv) PS C:\MMORPG_v2\gamers_pool\> celery -A gamers_pool worker -l INFO --pool=solo`
 
 4. Запустить Beat:
-(venv) PS C:\MMORPG_v2\gamers_pool\> Celery -A gamers_pool beat -l INFO
+`(venv) PS C:\MMORPG_v2\gamers_pool\> Celery -A gamers_pool beat -l INFO`
 ---
-#Работа в картинками [документация к приложению](https://github.com/jazzband/sorl-thumbnail)
+#Работа в [картинками](https://mob25.com/django-dobavlenie-kartinok-k-postam/) 
+
+[документация к sorl-thumbnail](https://github.com/jazzband/sorl-thumbnail)
 
     `pip install pillow`
     `pip install sorl-thumbnail`
@@ -125,4 +154,26 @@ C:\MMORPG_v2\gamers_pool\
     {% thumbnail item.image "100x100" crop="center" as im %}
       <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
+
+## Настройки проекта
+Добавим в модель Post новое поле, чтобы к посту можно было добавить заглавную картинку:
+
+    class Post(models.Model):
+        ...
+            # Поле для картинки (необязательное) 
+        image = models.ImageField(
+            'Картинка',
+            upload_to='posts/',
+            blank=True
+        )  
+        # Аргумент upload_to указывает директорию, 
+        # в которую будут загружаться пользовательские файлы. 
+    
+        class Meta:
+            ordering = ('-pub_date',)
+            verbose_name = 'Пост'
+            verbose_name_plural = 'Посты'
+    
+        def __str__(self):
+            return self.text[:15]
 

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>ReadMe - My Docs</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">My Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Welcome to MkDocs</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">ReadMe</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link">Работа в картинками документация к приложению</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p>Задание:
+Нам необходимо разработать интернет-ресурс для фанатского сервера одной известной
+MMORPG — что-то вроде доски объявлений. Пользователи нашего ресурса должны иметь возможность
+- зарегистрироваться в нём по e-mail,
+- получив письмо с кодом подтверждения регистрации.
+После регистрации им становится доступно
+- создание и редактирование объявлений.
+Объявления состоят из:
+    - заголовка и
+    - текста, внутри которого могут быть картинки, встроенные видео и другой контент.</p>
+<p>Кроме того, пользователь обязательно должен определить объявление в одну из
+следующих категорий:
+Танки, Хилы, ДД, Торговцы, Гилдмастеры, Квестгиверы, Кузнецы, Кожевники, Зельевары, Мастера заклинаний.</p>
+<p>Пользователи могут отправлять
+- отклики на объявления других пользователей, состоящие из простого текста.</p>
+<p>При отправке отклика пользователь должен
+- получить e-mail с оповещением о нём.</p>
+<p>Также пользователю должна быть доступна
+- приватная страница с откликами на его объявления,
+    внутри которой он может
+        - фильтровать отклики по объявлениям, удалять их и принимать (при принятии отклика пользователю, оставившему отклик,
+        - также должно прийти уведомление).</p>
+<p>Также мы бы хотели иметь возможность отправлять пользователям
+- новостные рассылки.</p>
+<hr />
+<p>ICONS from
+https://fontawesome.com/search?q=logout&amp;o=r</p>
+<p>python manage.py makemigrations
+python manage.py migrate</p>
+<p>Переводы
+Поскольку у нас уже были записи в базе данных, надо будет ввести команду
+python manage.py update_translation_fields
+Везде вставить
+from django.utils.translation import gettext as _</p>
+<p>Для обновления переводов в django.po
+python manage.py makemessages -l en
+и скомпиллировать
+python manage.py compilemessages</p>
+<hr />
+<p>{% load i18n %}</p>
+<form action="{% url 'set_language' %}" method="POST"> {% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
+    <input type="hidden" name="next" value="{{ redirect_to }}"></form>
+
+<pre><code>&lt;select name="language" id=""&gt;
+    {% get_available_languages as LANGUAGES %} &lt;!-- получаем языки --&gt;
+    {% get_language_info_list for LANGUAGES as languages %} &lt;!-- Помещаем их в список languages --&gt;
+
+    {% for language in languages %} &lt;!-- Итерируясь по списку, выводим их название на языке пользователя и код --&gt;
+        &lt;option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}&gt;
+            {{ language.name_local }} - {{ language.code }}
+        &lt;/option&gt;
+    {% endfor %}
+&lt;/select&gt;
+&lt;input type="submit" value="set"&gt;
+</code></pre>
+<hr />
+<p>For Celery &amp; Redis</p>
+<p>worker — это часть системы, которая отправляет задачи из очереди на исполнение.</p>
+<p>Все задачи принято хранить в файлах с названием tasks.py. В таком случае Celery сможет самостоятельно 
+находить задачи. Любая задача представляет собой обычную функцию с одной особенностью: 
+она должна быть обернута в декоратор.</p>
+<hr />
+<p>Celery - разблокирует рабочий процесс для Django. Это означает, что вы можете разгрузить задачи из основного цикла
+запросов/ответов внутри Django.</p>
+<p>Redis — это хранилище данных и брокер сообщений между Celery и Django. Другими словами, Django и Celery используют
+Redis для взаимодействия друг с другом (вместо базы данных SQL)</p>
+<p>Все трое работают вместе, создавая асинхронное волшебство. Вот несколько отличных вариантов использования Django + Celery:</p>
+<p>Разгрузка любых долгосрочных задач
+Отправка электронных писем и/или уведомлений по электронной почте
+Создание отчетов, создание которых занимает более 3 секунд.
+Запуск обучения и/или вывода машинного обучения
+Запуск определенных функций по расписанию
+Резервное копирование базы данных
+Включение/выключение дополнительных виртуальных машин для обработки нагрузки.
+Запуск рабочих процессов и/или отправка уведомлений веб-перехватчика</p>
+<hr />
+<ol>
+<li>
+<p>Запустить сервер: 
+(venv) PS C:\MMORPG_v2\gamers_pool&gt; python manage.py runserver</p>
+</li>
+<li>
+<p>Запустить Redis
+C:\Program Files\Redis\redis-server.exe</p>
+</li>
+<li>
+<p>Запустить Celery:
+C:\MMORPG_v2\gamers_pool\
+(venv) PS C:\MMORPG_v2\gamers_pool&gt; celery -A gamers_pool worker -l INFO --pool=solo</p>
+</li>
+<li>
+<p>Запустить Beat:
+(venv) PS C:\MMORPG_v2\gamers_pool&gt; Celery -A gamers_pool beat -l INFO</p>
+</li>
+</ol>
+<hr />
+<h1 id="_1">Работа в картинками <a href="https://github.com/jazzband/sorl-thumbnail">документация к приложению</a></h1>
+<pre><code>`pip install pillow`
+`pip install sorl-thumbnail`
+</code></pre>
+<p>Добавьте приложение в список INSTALLED_APPS, в конец списка:</p>
+<pre><code>PYTHONINSTALLED_APPS = [
+    # ...
+    'sorl.thumbnail',
+]
+</code></pre>
+<p>Выполните миграцию
+Теперь вам станут доступны специальные теги в шаблонах:</p>
+<pre><code>&lt;!-- Загрузка тегов библиотеки в шаблон --&gt;
+{% load thumbnail %}
+
+&lt;!-- Пример использования тега для пропорционального уменьшения и обрезки --&gt;
+&lt;!-- картинки до размера 100x100px с центрированием --&gt;
+{% thumbnail item.image "100x100" crop="center" as im %}
+  &lt;img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"&gt;
+{% endthumbnail %}
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
