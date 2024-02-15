@@ -55,7 +55,16 @@ ICONS [from](https://fontawesome.com/search?q=logout&o=r)
     python manage.py makemigrations
     python manage.py migrate
 
-Переводы
+## Переводы
+
+Для того чтобы создать файл перевода на какой-либо язык (в папке locale), надо ввести следующую команду в 
+терминале в папке с manage.py файлом:
+
+    python manage.py makemessages -l en
+Скомпилируем перевод. Для чего нам надо выполнить следующую команду:
+
+    python manage.py compilemessages
+
 Поскольку у нас уже были записи в базе данных, надо будет ввести команду
 
     python manage.py update_translation_fields
