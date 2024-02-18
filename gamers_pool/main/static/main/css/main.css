@@ -74,12 +74,12 @@ accounts .features {
     wight: 75%;
     }
 
-main .alert-warning{
+layout.main {
     color: #B2BEB5;
     float: left;
     clear: both;
     width: 400px;
-    margin: 20px 34%;
+    margin: 34%;
     text-align: left;
     }
 
@@ -87,6 +87,7 @@ form {
     margin: left;
     wight: 500px;
     margin-top: 50px;
+    margin: 34%;
     }
 
 table {

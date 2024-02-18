@@ -58,7 +58,7 @@ class PostCreateView(PermissionRequiredMixin, CreateView):
                            'main.change_post')
     context_object_name = 'posts_today'
     template_name = 'main/create.html'
-    success_url = '/' #f'/post<int:{_id}>'# Переделать на стр поста
+    success_url = '/'  # f'/post<int:{_id}>'# Переделать на стр поста
 
     def form_valid(self, form):
         post = form.save(commit=False)

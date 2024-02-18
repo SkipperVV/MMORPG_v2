@@ -20,12 +20,11 @@ class Post(models.Model):
     author = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, help_text=_("Автор"))
     '''https://ru.stackoverflow.com/questions/972537/%D0%9A%D0%B0%D0%BA-%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8-%D0%B2%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D1%8C-%D0%B8%D0%BC%D1%8F-%D0%B0%D0%B2%D1%82%D0%BE%D1%80%D0%B8%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-%D0%B2-%D0%BF%D0%BE%D0%BB%D0%B5-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8'''
     post_time = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(_('Заголовок'), max_length=100, help_text=_("Введите заголовок"))
+    title = models.CharField(_('Заголовок'), max_length=50, help_text=_("Введите заголовок"))
     text = models.TextField(_('Содержание'), help_text=_("Содержание статьи"))
+    category = models.CharField(_('Категория'), max_length=20, choices=CATEGORY, help_text=_('Введите категорию'))
     video = models.FileField(upload_to='videos/', blank=True, null=True)
     audio = models.FileField(upload_to='audio/', blank=True, null=True)
-    category = models.CharField(_('Категория'), max_length=20, choices=CATEGORY, help_text=_('Введите категорию'))
-    # Поле для картинки (необязательное)
     image = models.ImageField(
         'Image',
         upload_to='main/img',
