@@ -30,6 +30,7 @@
     <html lang="en" xmlns="http://www.w3.org/1999/html">
     <span class="logo"></span>
     <h3>{{ string }} {% trans 'Навигация' %}</h3>
+    <hr>
     <ul>
         <a href="{% url 'home' %}">
             <li><i class="fa-solid fa-house"></i> {{ string }} {% trans 'Главная' %}</li>
@@ -55,7 +56,7 @@
             <li><i class="fa-solid fa-right-to-bracket"></i> {{ string }} {%trans 'Регистрация'%}</li>
         </a>
         {% else %}
-        <br>
+        <br><hr>
         <p>{{ string }} {% trans "Вы авторизированы как" %}</p>
         <p>"{{ user }}"</p>
         <a href="{% url 'logout_confirmed' %}">

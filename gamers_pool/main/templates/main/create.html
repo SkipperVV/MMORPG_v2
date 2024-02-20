@@ -1,4 +1,5 @@
-{% extends 'main/layout.html' %}{% load static %}
+{% extends 'main/layout.html' %}
+{% load static %}
 {% load i18n %}
 
 {% block title %} Create a new post {% endblock title %}
@@ -9,7 +10,7 @@
 {% block content %}
 <div class="features">
 
-    <form action="{% url 'create' %}" method="POST" class="form-parent" enctype="multipart/form-data">
+    <form method="POST" class="form-parent" enctype="multipart/form-data">
           {% csrf_token %}
         <div class="form-error"> {{ form.non_field_errors }} </div>
 
@@ -19,7 +20,7 @@
                 <div class="form-error">{{f.errors}}</div>
           {% endfor %}
 
-    <input type="submit" value="Save this post">
+    <input type="submit" value= {{ string }} {% trans "Сохранить" %}>
 
     </form>
 </div>
