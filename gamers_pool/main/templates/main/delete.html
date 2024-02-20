@@ -26,8 +26,14 @@
     </div>
 </table>
 
+<br>
 
 <form method="POST">
     {% csrf_token %}
-    <input type="submit" value="Confirm"></form>
+    <input type="submit" value="Confirm">
+    <input type="button" value="Cancel" onclick="history.back()"/>
+</form>
+
 {% endblock content %}
+    </div>
+</div>

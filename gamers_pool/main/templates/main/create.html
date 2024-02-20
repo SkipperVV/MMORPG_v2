@@ -2,15 +2,25 @@
 {% load i18n %}
 
 {% block title %} Create a new post {% endblock title %}
+{% block text %}
+<h1> {{string}} {% trans "Пост от " %} "{{ user }}"</h1>
+{% endblock %}
 
 {% block content %}
 <div class="features">
-    <h1> {{string}} {% trans "Пост от " %}  "{{ user }}"</h1>
-    <form method="POST">
-        {% csrf_token %}
 
-        {{ form.as_p }}
-        <input type="submit" value="Add/edit post">
+    <form action="{% url 'create' %}" method="POST" class="form-parent" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="form-error"> {{ form.non_field_errors }} </div>
+
+          {% for f in form %}
+                <p label class="form-label" for={{ f.id_for_lablel }}>
+                 {{f.label}}: </label> {{f}} </p>
+                <div class="form-error">{{f.errors}}</div>
+          {% endfor %}
+
+    <input type="submit" value="Save this post">
+
     </form>
 </div>
 {% endblock content %}

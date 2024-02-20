@@ -8,15 +8,16 @@
 
 <div class="features" >
 
+
         <h1>{{ string }} {% trans "Просмотр публикации:" %}</h1>
         <h2> {{ string }} {% trans "Автор:" %} "{{post.author}} " </h2>
         <h4>{{ string }} {% trans "дата и время поста:" %} {{post.post_time}}<br>
             <br>{{ string }} {% trans "Заголовок:" %} "{{ post.title }}"</h4>
         <br>
-
+   <h2>'Post ID= ' {{post.id}}</h2>
          <hr>
             <h3 >{{ string }} {% trans "Содержание: " %} </h3>
-    <p style="width: 50em; padding: 1em;">{{post.text}}</p>
+    <p style="width: 50em; padding: 1em;">{{post.text|linebreaks}}</p>
 
      <hr>
 

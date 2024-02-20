@@ -8,7 +8,7 @@ aside {
     width: 18%;
     padding: 1%;
     height: 100vh;
-    color: #fff;
+    color: #607598;
     border-right: 5px solid #4d4d4d;
 }
 
@@ -41,7 +41,7 @@ aside ul li {
 }
 
 aside ul li:hover, aside ul a:hover {
-    color: #fff;
+    color: #e937bd;
     text-decoration: none;
     transform: scale(1.1);
 }
@@ -55,14 +55,14 @@ main .features {
 
 main .features h1 {font-size: 35px; margin: 20px;}
 main .features p {max-wight: 600px; margin: 20px auto;}
-h1 {color: #B2BEB5; font-size: 35px; margin: 20px;}
+h1 {color: #B2BEB5; text-align: left;  font-size: 35px; margin-left: 30%; margin-top: 2% }
 
-.text {
-    color: #B2BEB5;
+section {
+    color: #9ba3ac;
     float: left;
     clear: both;
     width: 800px;
-    margin: 20px 34%;
+    margin: 20px;
     text-align: center;
 }
 
@@ -79,21 +79,20 @@ layout.main {
     float: left;
     clear: both;
     width: 400px;
-    margin: 34%;
+    margin: 10%;
     text-align: left;
     }
 
 form {
-    margin: left;
+    margin: center;
     wight: 500px;
-    margin-top: 50px;
-    margin: 34%;
+    margin-top: 10px;
     }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 40px;
+    margin-top: 20px;
     margin-left: 20px;
     color: #b4b4b4;
     background-color: #LightGray;
@@ -110,3 +109,11 @@ table td {
     padding: 18px;
     text-align: center;
     }
+
+content    {
+    float: left;
+    clear: both;
+    width: 800px;
+    margin: 20px;
+    text-align: center;
+}
