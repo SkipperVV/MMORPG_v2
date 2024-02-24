@@ -54,6 +54,18 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'  # - без проверки
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # все уведомления будут приходить в консоль.
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'#Чтобы уведомления приходили на почту
 
+#  To help obfuscating comments before they are sent for confirmation.
+COMMENTS_XTD_SALT = (b"Timendi causa est nescire. "
+                     b"Aequam memento rebus in arduis servare mentem.")
+# Source mail address used for notifications.
+COMMENTS_XTD_FROM_EMAIL = "vasinvladimir@inbox.ru"
+
+# Contact mail address to show in messages.
+COMMENTS_XTD_CONTACT_EMAIL = "helpdesk@inbox.ru"
+MANAGERS = (
+    ('Skipper', 'skippervasin@gmail.com'),
+)
+
 SITE_ID = 1
 
 ACCOUNT_FORMS = {"signup": "sign.models.BasicSignupForm"}
@@ -69,6 +81,11 @@ EMAIL_PORT = 2525
 EMAIL_HOST_USER = 'vasinvladimir@inbox.ru'
 EMAIL_HOST_PASSWORD = '2548s3hVzkmenZfjnqnM'
 DEFAULT_FROM_EMAIL = 'vasinvladimir@inbox.ru'
+
+#Comments:
+COMMENTS_APP = 'django_comments_xtd'
+COMMENTS_XTD_MAX_THREAD_LEVEL = 2
+COMMENTS_XTD_CONFIRM_EMAIL = False
 
 EMAIL_USE_SSL = False
 EMAIL_USE_TLS = True
@@ -100,6 +117,11 @@ INSTALLED_APPS = [
     "django_apscheduler",  # отправлять периодические письма
 
     'sorl.thumbnail', # Работа с картинками
+
+    # django_comments_xtd and django_comments order should be same
+    'django_comments_xtd',
+    'django_comments',
+    'django.contrib.sites',
 ]
 
 MIDDLEWARE = [
@@ -180,7 +202,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-SITE_URL = "http://127.0.0.1:8000"
+SITE_URL = "http//127.0.0.1:8000"
 
 
 STATICFILES_DIRS = [BASE_DIR, "main/static", ]

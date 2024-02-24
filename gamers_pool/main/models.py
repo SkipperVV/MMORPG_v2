@@ -1,18 +1,26 @@
 from PIL import Image, ImageOps
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext as _
 
+from django_comments.moderation import CommentModerator
+from django_comments_xtd.moderation import moderator
+
 CATEGORY = [('Танки', 'Танки'), ('Хилы', 'Хилы',), ('ДД', 'ДД'), ('Торговцы', 'Торговцы'),
-            ('Гилдмастеры', 'Гилдмастеры'), ('Квестгиверы', 'Квестгиверы'), ('Кузнецы', 'Кузнецы,'),
+            ('Гилдмастеры', 'Гилдмастеры'), ('Квестгиверы', 'Квестгиверы'), ('Кузнецы', 'Кузнецы'),
             ('Кожевники', 'Кожевники'), ('Зельевары', 'Зельевары'), ('Мастера заклинаний', 'Мастера заклинаний')]
+
 
 
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, help_text=_("Автор"))
     nickname = models.CharField(max_length=100, help_text=_("Никнейм"))
+
+    def add_to_group(self):
+        user=self.user
+        user.groups.add(Group.objects.get(name='gamer'))
 
     def __str__(self):
         return self.user.username
@@ -32,6 +40,7 @@ class Post(models.Model):
     video = models.FileField('video', upload_to=user_directory_path, blank=True, null=True)
     audio = models.FileField('audio', upload_to=user_directory_path, blank=True, null=True)
     image = models.ImageField('image', upload_to=user_directory_path, blank=True, )
+    enable_comments = models.BooleanField(default=True,)
 
 
 
@@ -66,12 +75,17 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post', kwargs={'pk': self.pk})
 
+class PostCommentModerator(CommentModerator):
+    email_notification = True
+    auto_moderate_field = 'post_time'
+    moderate_after = 365
+# class Comment(models.Model):
+#     text = models.TextField()
+#     comment_time = models.DateTimeField(auto_now_add=True)
+#     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#
+#     def __str__(self):
+#         return f"{_('Коментарий от автора')} {self.user}: {self.text}"
 
-class Comment(models.Model):
-    text = models.TextField()
-    comment_time = models.DateTimeField(auto_now_add=True)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{_('Коментарий от автора')} {self.user}: {self.text}"
+moderator.register(Post, PostCommentModerator)

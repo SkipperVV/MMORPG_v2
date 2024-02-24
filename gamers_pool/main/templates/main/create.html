@@ -4,7 +4,8 @@
 
 {% block title %} Create a new post {% endblock title %}
 {% block text %}
-<h1> {{string}} {% trans "Пост от " %} "{{ user }}"</h1>
+
+<h1> {{ string }} {% trans "Новый пост от " %} "{{ user }}"</h1>
 {% endblock %}
 
 {% block content %}
@@ -20,7 +21,7 @@
                 <div class="form-error">{{f.errors}}</div>
           {% endfor %}
 
-    <input type="submit" value= {{ string }} {% trans "Сохранить" %}>
+    <input type="submit" value= '{{ string }} {% trans "Сохранить" %}'>
 
     </form>
 </div>

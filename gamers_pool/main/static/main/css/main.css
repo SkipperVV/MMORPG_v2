@@ -1,13 +1,14 @@
 body {
     background: #2c2c2c;
+    color: #71797E;
 }
 
 aside {
     float: left;
-    #background: #36454F;
+    background: #2c2c2c;
     width: 18%;
     padding: 1%;
-    height: 100vh;
+    height: 500vh;
     color: #607598;
     border-right: 5px solid #4d4d4d;
 }
@@ -50,21 +51,30 @@ main .features {
     float: left;
     color: #71797E;
     margin-top: 10px;
-    wight: 75%;
+    wight: 100%;
 }
 
-main .features h1 {font-size: 35px; margin: 20px;}
 main .features p {max-wight: 600px; margin: 20px auto;}
 h1 {color: #B2BEB5; text-align: left;  font-size: 35px; margin-left: 30%; margin-top: 2% }
 
-section {
+*.card-header, .card-body, .card-title, .card-text {
     color: #9ba3ac;
+    background-color: #2c2c2c;
     float: left;
-    clear: both;
-    width: 800px;
-    margin: 20px;
-    text-align: center;
+    text-align: left;
 }
+
+.py-4, .pt-4 {
+    color: #9ba3ac;
+    background-color: #2c2c2c;
+    float: left;
+    width: 75%;
+    height: 100px;
+    text-align: left;
+    align: left;
+    #border: 1px solid #ddd;
+}
+
 
 accounts h1 {color: #71797E;}
 accounts .features {
@@ -74,28 +84,26 @@ accounts .features {
     wight: 75%;
     }
 
-layout.main {
+.comment, .ul {
     color: #B2BEB5;
+    background-color: #2c2c2c;
     float: left;
-    clear: both;
-    width: 400px;
-    margin: 10%;
     text-align: left;
     }
 
-form {
+*|form {
+    color: #B2BEB5;
+    background-color: #2c2c2c;
     margin: center;
     wight: 500px;
     margin-top: 10px;
     }
 
+
 table {
     width: 100%;
-    border-collapse: collapse;
     margin-top: 20px;
     margin-left: 20px;
-    color: #b4b4b4;
-    background-color: #LightGray;
     }
 
 table th {
@@ -110,10 +118,4 @@ table td {
     text-align: center;
     }
 
-content    {
-    float: left;
-    clear: both;
-    width: 800px;
-    margin: 20px;
-    text-align: center;
-}
+

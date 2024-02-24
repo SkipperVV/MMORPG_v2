@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+{#  Jast a comments #}
+<body>
+<main align='lelft'>
+<h2 style="margin-left: 20%; text-align: left; color: gray;">
+    {% block text %} {% endblock text%}
+</h2>
+    <div style=" margin-left: 20%; wight=100%">
+        {% block content %} {% endblock %}
+    </div>
+</main>
+</body>

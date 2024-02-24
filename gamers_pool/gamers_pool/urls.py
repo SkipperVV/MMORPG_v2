@@ -1,7 +1,9 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+
 from django.urls import path, include
+
 
 urlpatterns = [
                   path('i18n/', include('django.conf.urls.i18n')),
@@ -10,5 +12,6 @@ urlpatterns = [
                   path('logon/', include('protect.urls')),
                   path('sign/', include('sign.urls')),
                   path('accounts/', include('allauth.urls')),
+                  path('comments/', include('django_comments_xtd.urls')),
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

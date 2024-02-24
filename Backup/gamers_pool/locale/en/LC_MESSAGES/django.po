@@ -1,0 +1,201 @@
+# Для того чтобы создать файл перевода на какой-либо язык (в папке locale), надо ввести следующую команду в 
+# терминале в папке с manage.py файлом:
+#   python manage.py makemessages -l en
+# Скомпилируем перевод. Для чего нам надо выполнить следующую команду:
+#   python manage.py compilemessages
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 18:30+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\main\models.py:11
+msgid "Автор"
+msgstr "AUTHOR"
+
+#: .\main\models.py:15
+msgid "Заголовок"
+msgstr "Title"
+
+#: .\main\models.py:15
+msgid "Введите заголовок"
+msgstr "Enter category"
+
+#: .\main\models.py:16
+msgid "Содержание"
+msgstr "Content"
+
+#: .\main\models.py:16
+msgid "Содержание статьи"
+msgstr "The content of the article"
+
+#: .\main\models.py:19
+msgid "Категория"
+msgstr "Category"
+
+#: .\main\models.py:19
+msgid "Введите категорию"
+msgstr "Enter category"
+
+#: .\main\templates\main\create.html:8
+msgid "Новый пост от "
+msgstr "New post by "
+
+#: .\main\templates\main\delete.html:7
+msgid "Вы действительно хотите удалить этот пост?"
+msgstr "Are you sure you want to delete this post?"
+
+#: .\main\templates\main\delete.html:12 .\main\templates\main\post.html:12
+#: .\main\templates\main\posts.html:26
+msgid "Автор:"
+msgstr "Author"
+
+#: .\main\templates\main\delete.html:13 .\main\templates\main\post.html:14
+#: .\main\templates\main\posts.html:27
+msgid "Заголовок:"
+msgstr "Title"
+
+#: .\main\templates\main\delete.html:14 .\main\templates\main\posts.html:28
+msgid "Краткое содержание:"
+msgstr "Description:"
+
+#: .\main\templates\main\delete.html:15 .\main\templates\main\posts.html:29
+msgid "Дата публикации:"
+msgstr "Publication date:"
+
+#: .\main\templates\main\delete.html:16 .\main\templates\main\posts.html:30
+msgid "Категория:"
+msgstr "Category"
+
+#: .\main\templates\main\layout.html:43
+msgid "Навигация"
+msgstr "Navigation"
+
+#: .\main\templates\main\layout.html:46
+msgid "Главная"
+msgstr "Main Page"
+
+#: .\main\templates\main\layout.html:50
+msgid "Разместить пост"
+msgstr "Post a post"
+
+#: .\main\templates\main\layout.html:54
+msgid "Немного о нас"
+msgstr "A little about us"
+
+#: .\main\templates\main\layout.html:61
+msgid "Для полноценного присутствия требуется авторизация или регистрация"
+msgstr "Authorization or registration is required for full presence"
+
+#: .\main\templates\main\layout.html:63
+msgid "Вход"
+msgstr "Login"
+
+#: .\main\templates\main\layout.html:66
+msgid "Регистрация"
+msgstr "Registration"
+
+#: .\main\templates\main\layout.html:70
+msgid "Вы авторизированы как"
+msgstr "You are logged in as"
+
+#: .\main\templates\main\layout.html:73
+msgid "Выход"
+msgstr "Exit"
+
+#: .\main\templates\main\post.html:11
+msgid "Просмотр публикации:"
+msgstr "View publication:"
+
+#: .\main\templates\main\post.html:13
+msgid "дата и время поста:"
+msgstr "post date and time:"
+
+#: .\main\templates\main\post.html:16
+msgid "Содержание: "
+msgstr "Conteins"
+
+#: .\main\templates\main\post.html:19
+msgid "Редактировать"
+msgstr "Edit"
+
+#: .\main\templates\main\post.html:21
+msgid "Удалить"
+msgstr "Delete"
+
+#: .\main\templates\main\posts.html:13
+msgid "Главная страница"
+msgstr "Main Page"
+
+#: .\main\templates\main\posts.html:16
+msgid "На сегодняшнее число,"
+msgstr "As of today's date,"
+
+#: .\main\templates\main\posts.html:17
+msgid " всего объявлений: "
+msgstr "total posts:"
+
+#: .\main\templates\main\posts.html:18
+msgid "из них, на этой странице показано: "
+msgstr "Of these, this page shows: "
+
+#: .\main\templates\main\posts.html:31
+msgid "Ред-ть:"
+msgstr "Edit"
+
+#: .\main\templates\main\posts.html:32
+msgid "Удалить:"
+msgstr "Delete"
+
+#: .\main\templates\main\posts.html:48
+msgid "Вы можете оставить комментарии на пост, кликнув по нему"
+msgstr "You can leave comments on the post by clicking on it "
+
+#: .\main\templates\main\posts.html:52
+msgid "Сегодня без новостей"
+msgstr "No news today"
+
+#: .\main\views.py:118
+msgid "О нас"
+msgstr "About us"
+
+#: .\main\views.py:119
+msgid "Мы очень крутые. Мы самые лучшие!!!!"
+msgstr "We're very cool. We are the best!!!! "
+
+#: .\protect\templates\protect\index.html:6
+msgid "Вы вошли, как пользователь: "
+msgstr "You are logged in as a user:"
+
+#: .\protect\templates\protect\index.html:7
+msgid "Личные данные пользователя: "
+msgstr "User personal data:"
+
+#: .\sign\templates\sign\logout.html:5
+msgid "Вы вышли из системы"
+msgstr "You are logged out"
+
+#: .\sign\templates\sign\logout_confirmed.html:4
+msgid "Вы действительно хотите выйти?"
+msgstr "Do you really want to leave?"
+
+#: .\sign\templates\sign\logout_confirmed.html:7
+msgid "Подтвердить"
+msgstr "Confirm"
+
+#~ msgid "Рассказ о нас, любимых. "
+#~ msgstr "A story about us, loved ones."

@@ -1,15 +1,15 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
-from .models import Post, Comment, Author
-admin.site.register(Comment)
+from .models import Post, Author#,Comment
+# admin.site.register(Comment)
 
 
 # class PostAdmin(TranslationAdmin):
 #     model = Post
 
 
-class CommentAdmin(TranslationAdmin):
-    model = Comment
+# class CommentAdmin(TranslationAdmin):
+#     model = Comment
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):

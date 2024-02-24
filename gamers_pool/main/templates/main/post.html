@@ -1,32 +1,63 @@
-{% extends 'main/layout.html' %}{% load static %}
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load comments %}
+{% load comments_xtd %}
 {% load i18n %}
-
-{% block title %} The Post of {{post.author}} {% endblock title %}
 
 {% block content %}
 
+<!-- nav bar -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}"> <<< {% trans "Вернуться на главную" %} </a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+    </ol>
+</nav>
 
-<div class="features" >
-
-
-        <h1>{{ string }} {% trans "Просмотр публикации:" %}</h1>
-        <h2> {{ string }} {% trans "Автор:" %} "{{post.author}} " </h2>
-        <h4>{{ string }} {% trans "дата и время поста:" %} {{post.post_time}}<br>
-            <br>{{ string }} {% trans "Заголовок:" %} "{{ post.title }}"</h4>
-        <br>
-   <h2>'Post ID= ' {{post.id}}</h2>
-         <hr>
-            <h3 >{{ string }} {% trans "Содержание: " %} </h3>
-    <p style="width: 50em; padding: 1em;">{{post.text|linebreaks}}</p>
-
-     <hr>
-
-
-<p style="width: 50em; padding: 1em;">
-<a href="{% url 'update' post.id %}"><u> {{ string }} {% trans "Редактировать" %}
-        &#128260;</u></a><br>
-<a href="{% url 'delete' post.id %}"><u> {{ string }} {% trans "Удалить" %} &#128683; </u></a>
-</p>
-
+<div class="container">
+        <div class="card" style="max-width: 50rem;">
+            <div class="card-header"> {% trans "Пост от  " %}  {{ post.post_time }}</div>
+            <div class="card-header"> {% trans "Автора:  " %}  <b><mark>'{{ post.author }}'</mark></b></div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    {% trans "Заголовок:  " %} {{ post.title }}
+                </h5>
+            <p class="card-text">{% trans "Текст:  " %} {{ post.text }}</p>
+            </div>
+        </div>
 </div>
+
+{% get_comment_count for post as comment_count %}
+    <div class="py-4 ">
+        <p class="card-text">
+    {{ comment_count }} comment{{ comment_count|pluralize }}
+    ha{{ comment_count|pluralize:"s,ve"}} been posted.
+        </p>
+    </div>
+
+<ul class="media-list shadow p-3 mb-5 bg-grey rounded container">
+    {% if comment_count %}
+
+
+        <p class="card-text">
+        {% render_xtdcomment_tree for post %} <br>
+        </p>
+
+    {% endif %}
+    </ul>
+<hr>
+<!--    <div class="comment bg-black rounded container">-->
+
+
+
+        <div class="card pt-4 bg-grey ">
+            <h4 class="text-left">Your comment</h4>
+
+            {% render_comment_form for post %}
+
+        </div>
+
+<!--    </div>-->
+
+
 {% endblock content %}
