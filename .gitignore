@@ -1,8 +1,9 @@
 # Byte-compiled / optimized / DLL files
-Baskup
+Backup
 __pycache__/
 *.py[cod]
 *$py.class
+ReadMe.txt
 
 # C extensions
 *.so

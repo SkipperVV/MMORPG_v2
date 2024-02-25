@@ -32,7 +32,6 @@
 
                     </div>
 
-
                 <h5 class="card-title">
                     {% trans "Заголовок:  " %} {{ post.title }}
                 </h5>
@@ -40,7 +39,7 @@
             </div>
         </div>
 </div>
-
+    <hr>
 {% get_comment_count for post as comment_count %}
     <div class="py-4 ">
         <p class="card-text">
@@ -51,17 +50,16 @@
 
 <ul class="media-list shadow p-3 mb-5 bg-grey rounded container">
     {% if comment_count %}
-
-
         <p class="card-text">
         {% render_xtdcomment_tree for post %} <br>
         </p>
-
     {% endif %}
-    </ul>
-
+    </ul>    <br>
+<div>
+<div class="container">
         <div class="card pt-4 bg-grey ">
             <h4 class="text-left">Your comment</h4>
             {% render_comment_form for post %}
         </div>
+</div></div>
 {% endblock content %}

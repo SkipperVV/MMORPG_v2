@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-25 14:18+0100\n"
+"POT-Creation-Date: 2024-02-25 14:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -179,11 +179,23 @@ msgstr "Number of comments: "
 msgid "Пока без комментарий"
 msgstr "No comments yet"
 
-#: .\main\templates\main\posts.html:59
+#: .\main\templates\main\posts.html:52
+msgid "+ картинка"
+msgstr "+ image"
+
+#: .\main\templates\main\posts.html:54
+msgid "+ видео"
+msgstr "+ video"
+
+#: .\main\templates\main\posts.html:56
+msgid "+ звук"
+msgstr "+ audio"
+
+#: .\main\templates\main\posts.html:66
 msgid "Вы можете оставить комментарии на пост, кликнув по нему"
 msgstr "You can leave comments on the post by clicking on it "
 
-#: .\main\templates\main\posts.html:63
+#: .\main\templates\main\posts.html:70
 msgid "Сегодня без новостей"
 msgstr "No news today"
 

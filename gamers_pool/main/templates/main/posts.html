@@ -38,7 +38,7 @@
     </thead>
         {% for item in posts %}
             <tr>
-                <td width="150"> <mark style="background: #00ced1 ">{{ item.author|upper }}</mark><hr>
+                <td width="150"> <b><mark style="background: #595d7d ">{{ item.author|upper }}</mark></b><hr>
                     {% get_comment_count for item as comment_count %}
                     {% if comment_count %}
                     <h6> {% trans "Количество отзывов: " %} {{ comment_count }} </h6>
