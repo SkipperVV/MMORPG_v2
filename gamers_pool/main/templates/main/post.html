@@ -19,6 +19,20 @@
             <div class="card-header"> {% trans "Пост от  " %}  {{ post.post_time }}</div>
             <div class="card-header"> {% trans "Автора:  " %}  <b><mark>'{{ post.author }}'</mark></b></div>
             <div class="card-body">
+                <div class="image">
+                    {% if post.image %}
+                <img src="{{ post.image.url }}" class="rounded featured-image-list" alt="Image of {{post.author}}"/>
+                    {% elif post.video %}
+                    <iframe width="560" height="315" sandbox src="{{ post.video.url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen; controls=1 ></iframe>
+                    {% elif post.audio %}
+                    <audio controls>
+                        <source src="{{ post.audio.url }}" type="audio/mpeg">
+                    </audio>
+                    {% endif %}
+
+                    </div>
+
+
                 <h5 class="card-title">
                     {% trans "Заголовок:  " %} {{ post.title }}
                 </h5>
@@ -45,19 +59,9 @@
 
     {% endif %}
     </ul>
-<hr>
-<!--    <div class="comment bg-black rounded container">-->
-
-
 
         <div class="card pt-4 bg-grey ">
             <h4 class="text-left">Your comment</h4>
-
             {% render_comment_form for post %}
-
         </div>
-
-<!--    </div>-->
-
-
 {% endblock content %}

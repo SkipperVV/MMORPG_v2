@@ -1,7 +1,10 @@
 {% extends 'main/layout.html' %}
 {% load i18n %}
 {% load static  %}
+{% load comments %}
+
 {% block title %} Posts {% endblock  %}
+
 
 <b style="color:#ff0099; font-size:30px"> Page "Posts"</b>
 
@@ -35,9 +38,24 @@
     </thead>
         {% for item in posts %}
             <tr>
-                <td width="150">{{ item.author }}</td>
-               {# <td width="250">{{ item.title }}</td>#}
-               <td width="100"><a href="{% url 'post' item.id %}">{{ item.title }}</a></td>
+                <td width="150"> <mark style="background: #00ced1 ">{{ item.author|upper }}</mark><hr>
+                    {% get_comment_count for item as comment_count %}
+                    {% if comment_count %}
+                    <h6> {% trans "Количество отзывов: " %} {{ comment_count }} </h6>
+                    {% else %}
+                    <h6> {% trans "Пока без комментарий" %} </h6>
+                    {% endif %}
+                </td>
+
+               <td width="100"><a href="{% url 'post' item.id %}">{{ item.title }}</a>
+               {% if item.image %}
+                   <h6>{% trans "+ картинка" %}</h6>
+               {% elif item.video %}
+                   <h6>{% trans "+ видео" %}</h6>
+               {% elif item.audio %}
+                   <h6>{% trans "+ звук" %}</h6>
+               {% endif %}
+               </td>
                 <td width="500">{{item.text}}</td>
                 <td width="200">{{item.post_time}}</td>
                 <td width="100">{{item.category}}</td>

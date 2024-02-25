@@ -10,6 +10,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils.translation import get_language as lg
 from django.utils.translation import gettext as _
 from django.views.generic import CreateView, DeleteView, UpdateView, ListView
+from django.conf.urls.static import static
 
 from .forms import PostForm
 from .models import Post

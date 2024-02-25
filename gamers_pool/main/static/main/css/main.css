@@ -19,13 +19,6 @@ aside img {
     margin-bottom: 25px;
     display: block;
 }
-img {
-    wight: 80px;
-    float: left;
-    margin-bottom: 25px;
-    display: block;
-}
-
 aside img:hover{transform: scale(1.05);}
 
 aside h3 {
@@ -64,6 +57,19 @@ h1 {color: #B2BEB5; text-align: left;  font-size: 35px; margin-left: 30%; margin
     text-align: left;
 }
 
+.container .img {
+    object-fit: cover;
+    wight: 180px;
+    height: 100%;
+    border-radius:
+}
+.img {
+    wight: 180px;
+    height: 100%;
+    float: left;
+    margin-bottom: 25px;
+    display: block;
+}
 .py-4, .pt-4 {
     color: #9ba3ac;
     background-color: #2c2c2c;
@@ -74,7 +80,6 @@ h1 {color: #B2BEB5; text-align: left;  font-size: 35px; margin-left: 30%; margin
     align: left;
     #border: 1px solid #ddd;
 }
-
 
 accounts h1 {color: #71797E;}
 accounts .features {

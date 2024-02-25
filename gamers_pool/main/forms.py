@@ -18,8 +18,8 @@ class PostForm(ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-input'}),
             'text': forms.Textarea(attrs={'cols': 100, 'rows': 10, }),
-            # 'category': forms.Select(attrs={'class': 'form-input'}),
-            # 'video': forms.FileInput(attrs={'class': 'form-input'}),
-            # 'audio': forms.FileInput(attrs={'class': 'form-input'}),
-            # 'image': forms.FileInput(attrs={'class': 'form-input'}),
+            'category': forms.Select(attrs={'class': 'form-input'}),
+            'video': forms.FileInput(attrs={'class': 'form-input'}),
+            'audio': forms.FileInput(attrs={'class': 'form-input'}),
+            'image': forms.FileInput(attrs={'class': 'form-input'}),
         }

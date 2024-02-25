@@ -66,9 +66,6 @@ class Post(models.Model):
     #         image.thumbnail(output_size)
     #         image.save(self.image.path)
 
-            # Аргумент upload_to указывает директорию,
-    # в которую будут загружаться пользовательские файлы.
-
     def __str__(self):
         return f"{self.title[:20]}"
 

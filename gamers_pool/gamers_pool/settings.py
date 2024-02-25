@@ -150,6 +150,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'django.template.context_processors.request',  # `allauth` needs this from django
+                'django.template.context_processors.media',  # включить media в context_processors
             ],
         },
     },
@@ -214,6 +215,7 @@ STATICFILES_FINDERS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 
 # Default primary key field type
