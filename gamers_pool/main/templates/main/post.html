@@ -50,16 +50,17 @@
 
 <ul class="media-list shadow p-3 mb-5 bg-grey rounded container">
     {% if comment_count %}
-        <p class="card-text">
-        {% render_xtdcomment_tree for post %} <br>
-        </p>
+<ul class="media-list">
+  {% render_xtdcomment_tree for post allow_flagging %}
+</ul>
     {% endif %}
     </ul>    <br>
 <div>
 <div class="container">
-        <div class="card pt-4 bg-grey ">
-            <h4 class="text-left">Your comment</h4>
+        <div class="card pt-4 shadow p-3 mb-5 bg-grey rounded container">
+            <h4 class="text-left">{% trans 'Ваш комментарий' %}</h4>
             {% render_comment_form for post %}
+
         </div>
 </div></div>
 {% endblock content %}

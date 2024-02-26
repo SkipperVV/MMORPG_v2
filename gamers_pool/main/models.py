@@ -76,13 +76,5 @@ class PostCommentModerator(CommentModerator):
     email_notification = True
     auto_moderate_field = 'post_time'
     moderate_after = 365
-# class Comment(models.Model):
-#     text = models.TextField()
-#     comment_time = models.DateTimeField(auto_now_add=True)
-#     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return f"{_('Коментарий от автора')} {self.user}: {self.text}"
 
 moderator.register(Post, PostCommentModerator)

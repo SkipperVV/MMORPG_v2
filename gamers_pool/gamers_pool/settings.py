@@ -20,8 +20,8 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.getenv("SECRET_KEY")
-SECRET_KEY = 'django-insecure-=5bso*air5)$)%$$g-g*5=z8l*bd=aflu(cc%(ox9vsyji+j&#'
+SECRET_KEY = os.getenv("SECRET_KEY")
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -58,30 +58,31 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # все ув�
 COMMENTS_XTD_SALT = (b"Timendi causa est nescire. "
                      b"Aequam memento rebus in arduis servare mentem.")
 # Source mail address used for notifications.
-COMMENTS_XTD_FROM_EMAIL = "vasinvladimir@inbox.ru"
+COMMENTS_XTD_FROM_EMAIL = "skippervasin@gmail.com"
 
 # Contact mail address to show in messages.
-COMMENTS_XTD_CONTACT_EMAIL = "helpdesk@inbox.ru"
+COMMENTS_XTD_CONTACT_EMAIL = "feadback@inbox.ru"
 MANAGERS = (
     ('Skipper', 'skippervasin@gmail.com'),
     ('admin', 'admin@admin.com'),
 )
 
+COMMENTS_XTD_APP_MODEL_OPTIONS = {
+    'main.post': {
+        'allow_flagging': True,
+        'allow_feedback': True,
+        'show_feedback': True,
+    }
+}
 SITE_ID = 1
 
 ACCOUNT_FORMS = {"signup": "sign.models.BasicSignupForm"}
 
-# EMAIL_HOST = os.getenv("EMAIL_HOST")
-# EMAIL_PORT = os.getenv("EMAIL_PORT")
-# EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-# EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")  # mail.ru пароль для внешнего приложения
-# DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
-
-EMAIL_HOST = 'smtp.mail.ru'
-EMAIL_PORT = 2525
-EMAIL_HOST_USER = 'vasinvladimir@inbox.ru'
-EMAIL_HOST_PASSWORD = '2548s3hVzkmenZfjnqnM'
-DEFAULT_FROM_EMAIL = 'vasinvladimir@inbox.ru'
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")  # mail.ru пароль для внешнего приложения
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 
 #Comments:
 COMMENTS_APP = 'django_comments_xtd'

@@ -1,22 +1,17 @@
 import datetime
 import os
-from urllib import request
 
-from allauth.core.internal.http import redirect
+import django_comments
 from django.contrib.auth.mixins import PermissionRequiredMixin, UserPassesTestMixin
-
 from django.shortcuts import render
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.utils.translation import get_language as lg
 from django.utils.translation import gettext as _
 from django.views.generic import CreateView, DeleteView, UpdateView, ListView
-from django.conf.urls.static import static
 
 from .forms import PostForm
 from .models import Post
 
-
-from .tasks import info_after_new_post
 
 class MainView(ListView):
     model = Post
@@ -34,7 +29,7 @@ class MainView(ListView):
 
 class PostView(ListView):
     model = Post
-    template_name = 'main/post-details.html'
+    template_name = 'main/post.html'
     context_object_name = 'post'
     ordering = '-post_time'
 
@@ -43,7 +38,6 @@ class PostView(ListView):
         _id = self.kwargs.get('pk')
         context['time_now'] = datetime.datetime.utcnow()
         context['post'] = Post.objects.get(id=_id)
-        # context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         return context
 
 class PostCreateView(PermissionRequiredMixin, CreateView):
@@ -77,6 +71,7 @@ class PostUpdateView(PermissionRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     template_name = 'main/create.html'
     success_url = '/'
+
     # success_url = f'/post<int:{_id}>
     def test_func(self):
         post = self.get_object()
@@ -120,6 +115,7 @@ def AboutView(request):
         'text': txt,
     }
     return render(request, 'main/about.html', data)
+
 
 def Language(cur_language):
     if cur_language == 'ru':

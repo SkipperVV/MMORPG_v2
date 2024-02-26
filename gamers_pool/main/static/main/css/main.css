@@ -71,7 +71,7 @@ h1 {color: #B2BEB5; text-align: left;  font-size: 35px; margin-left: 30%; margin
     margin-bottom: 25px;
     display: block;
 }
-.py-4, .pt-4, .col-8, {
+.py-4, .pt-4, .col-8, col-10, fieldset {
     color: #9ba3ac;
     background-color: #2c2c2c;
     float: left;

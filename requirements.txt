@@ -1,4 +1,5 @@
 django-allauth
+getenv
 celery
 redis
 django-apscheduler
@@ -9,6 +10,8 @@ python-decouple
 pillow
 sorl-thumbnail
 mkdocs
+django-contrib-comments
+django_comments_xtd
 
 
 
