@@ -64,6 +64,7 @@ COMMENTS_XTD_FROM_EMAIL = "vasinvladimir@inbox.ru"
 COMMENTS_XTD_CONTACT_EMAIL = "helpdesk@inbox.ru"
 MANAGERS = (
     ('Skipper', 'skippervasin@gmail.com'),
+    ('admin', 'admin@admin.com'),
 )
 
 SITE_ID = 1

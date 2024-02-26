@@ -2,11 +2,16 @@
 {% load i18n %}
 {% block content %}
 <div class="text-center">
-<h1> {% trans "Вы действительно хотите выйти?" %} </h1>
+    <h1> {% trans "Вы действительно хотите выйти?" %} </h1>
     <hr>
-<form action="{% url 'logout' %}" method="post">
-    {% csrf_token %}
-    <input type="submit" value= "{{string}} {% trans 'Подтвердить' %}">
-</form>
-    </div>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="{{string}} {% trans 'Подтвердить' %}">
+    </form>
+<br>
+    <form action="{% url 'home' %}">
+        <input type="submit" value="{{string}} {% trans 'Отмена' %}">
+    </form>
+
+</div>
 {% endblock %}

@@ -16,7 +16,7 @@ from .forms import PostForm
 from .models import Post
 
 
-# from .tasks import info_after_new_post
+from .tasks import info_after_new_post
 
 class MainView(ListView):
     model = Post
@@ -34,7 +34,7 @@ class MainView(ListView):
 
 class PostView(ListView):
     model = Post
-    template_name = 'main/post.html'
+    template_name = 'main/post-details.html'
     context_object_name = 'post'
     ordering = '-post_time'
 
@@ -46,20 +46,6 @@ class PostView(ListView):
         # context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         return context
 
-# def CommentView():
-#     model = Post
-#     template_name = 'main/post_details.html'
-#     context_object_name = 'post'
-#     ordering = '-post_time'
-#
-#     def get_context_data(self, *args, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         _id = self.kwargs.get('pk')
-#         context['time_now'] = datetime.datetime.utcnow()
-#         context['post'] = Post.objects.get(id=_id)
-#         # context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
-#         return context
-
 class PostCreateView(PermissionRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
@@ -67,8 +53,6 @@ class PostCreateView(PermissionRequiredMixin, CreateView):
                            'main.change_post')
     context_object_name = 'posts_today'
     template_name = 'main/create.html'
-
-    # success_url = '/'   # f'/post<int:{_id}>'# Переделать на стр поста
 
     def form_valid(self, form):
         post = form.save(commit=False)
@@ -136,10 +120,6 @@ def AboutView(request):
         'text': txt,
     }
     return render(request, 'main/about.html', data)
-
-
-
-
 
 def Language(cur_language):
     if cur_language == 'ru':

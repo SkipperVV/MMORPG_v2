@@ -145,7 +145,7 @@ Redis для взаимодействия друг с другом (вместо
 4. Запустить Beat:
 `(venv) PS C:\MMORPG_v2\gamers_pool\> Celery -A gamers_pool beat -l INFO`
 ---
-#Работа в [картинками](https://mob25.com/django-dobavlenie-kartinok-k-postam/) 
+#Работа с [картинками](https://mob25.com/django-dobavlenie-kartinok-k-postam/) 
 
 [документация к sorl-thumbnail](https://github.com/jazzband/sorl-thumbnail)
 
